@@ -24,8 +24,10 @@ jobs:
           flutter-version: '3.19.0'
           channel: 'stable'
 
-      - name: Install dependencies
-        run: flutter pub get
+      - name: 🔄 إنشاء مشروع فلاتر نظيف (يصلح ملفات الأندرويد تلقائيًا)
+        run: |
+          flutter create --org com.abayazeed.link_manager . --platforms android --no-pub
+          flutter pub get
 
       - name: Build APK
         run: flutter build apk --release --no-tree-shake-icons
@@ -33,6 +35,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: abayazeed-link-manager
+          name: abayazeed-link-manager-APK
           path: build/app/outputs/flutter-apk/app-release.apk
-          retention-days: 30
